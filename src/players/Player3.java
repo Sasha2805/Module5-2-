@@ -1,5 +1,7 @@
 package players;
 
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 
 public class Player3 extends Player{
@@ -19,6 +21,12 @@ public class Player3 extends Player{
     @Override
     public void playAllSongs(){
         super.playAllSongs();   // проигрываем все песни
+    }
+
+    @Override
+    public void show(VBox vBox){
+        super.show(vBox, super.playlist.get(0), "Play first song");
+        super.playAll(vBox);
     }
 
     public double getPRICE() {

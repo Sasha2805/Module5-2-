@@ -1,6 +1,8 @@
 package players;
 
-public class Player1 extends Player{
+import javafx.scene.layout.VBox;
+
+public class Player1 extends Player {
     private final double PRICE;
 
     public Player1(String song, double PRICE){
@@ -11,6 +13,11 @@ public class Player1 extends Player{
     @Override
     public void playSong(){
         super.playSong();
+    }
+
+    @Override
+    public void show(VBox vBox){
+        super.show(vBox);
     }
 
     public double getPRICE() {

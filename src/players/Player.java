@@ -1,10 +1,15 @@
 package players;
 
-import javafx.scene.layout.Pane;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 
 public class Player {
-    private String song;
+    protected String song;
     protected ArrayList<String> playlist = new ArrayList<>();
 
     public Player(){
@@ -50,8 +55,38 @@ public class Player {
         playlist.add(song);
     }
 
-    public void show(Pane root){
+    public void show(VBox vBox){
+       show(vBox, song, "Play song");
+    }
 
+    public void show(VBox vBox, String song, String nameButton){ // Отрисовывает кнопку с нужным названием
+        Text textSong = new Text();                              // и выводит название песни в UI
+        textSong.setFont(Font.font ("Verdana", 15));
+        Button play = new Button(nameButton);
+        play.getStyleClass().add("methods-button");
+
+        play.setOnAction(event -> {
+            vBox.getChildren().clear();
+            textSong.setText(song);
+            vBox.getChildren().add(textSong);
+        });
+        vBox.getChildren().add(play);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
+    }
+
+    public void playAll(VBox vBox){ // Проигрывает все пени плейлиста (отрисовывает их в UI)
+        Button play = new Button("Play All Songs");
+        play.getStyleClass().add("methods-button");
+
+        play.setOnAction(event -> {
+            vBox.getChildren().clear();
+                for (int i = 0; i < playlist.size(); i++)
+                    vBox.getChildren().addAll(new Text(playlist.get(i)));
+        });
+        vBox.getChildren().add(play);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
     }
 
     // Getters and setters

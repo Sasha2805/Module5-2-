@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        // Демонстрация работы класов в консоли
         Player player = new Player("Super Song1");
         Player1 player1 = new Player1("The best song", 400);
         Player2 player2 = new Player2("Good song", 305);

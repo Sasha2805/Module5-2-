@@ -1,5 +1,10 @@
 package players;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,9 +28,25 @@ public class Player6 extends Player{
     }
 
     public void shuffle(){  // перемешиваем плейлист
-        System.out.println("Плейлист до перемешивания: " + super.playlist);
         Collections.shuffle(super.playlist);
-        System.out.println("Плейлист после перемешивания: " + super.playlist);
+    }
+
+    @Override
+    public void show(VBox vBox){
+        super.show(vBox, super.playlist.get(0), "Play first song");
+        super.playAll(vBox);
+
+        Button play = new Button("Shuffle");
+        play.getStyleClass().add("methods-button");
+        play.setOnAction(event -> {
+           vBox.getChildren().clear();
+           shuffle();
+            for (int i = 0; i < playlist.size(); i++)
+                vBox.getChildren().addAll(new Text(playlist.get(i)));
+        });
+        vBox.getChildren().add(play);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
     }
 
     public double getPRICE() {
